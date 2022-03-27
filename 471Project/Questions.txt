@@ -1,0 +1,8 @@
+1)
+How can we overlay two tables customer and employee so 
+that employee uses variables in customer but has extra 
+columns?
+
+2)
+How to use and when to use external tables that are linked
+to existing tables? (i.e. Employee : Employee family)
