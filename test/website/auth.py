@@ -3,6 +3,7 @@ from .models import Customer, Employee
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from datetime import datetime
 import sqlite3
 
 from website.models import Customer
@@ -47,14 +48,14 @@ def sign_up():
         last_name = request.form.get('lastName')
         address = request.form.get('address')
         phone_number = request.form.get('phoneNumber')
-        date_of_birth = request.form.get('dateOfBirth')
+        date_of_birth_str = request.form.get('dateOfBirth')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
         
         user = Customer.query.filter_by(email=email).first()
         if user:
-            flash('Email already exists.', category='error')
+           flash('Email already exists.', category='error')
         elif len(email) < 4:
             flash('Email must be greater than 3 characters.', category='error')
         elif len(first_name) < 2:
@@ -64,6 +65,7 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
+            date_of_birth = datetime.strptime(date_of_birth_str,  '%Y/%d/%m')
             new_user = Customer(email=email, first_name=first_name, last_name=last_name, 
                                 address=address, password=generate_password_hash(
                                 password1, method='sha256'), phone_number=phone_number, 
