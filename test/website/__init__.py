@@ -3,18 +3,25 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 
 db = SQLAlchemy()
 DB_NAME = "library.db" #must refactor with library.db
 
+# some_engine = create_engine(f'sqlite:///{DB_NAME}')
+# Session = sessionmaker(bind=some_engine)
 
+# session = Session()
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
+
+    
 
     from .views import views
     from .auth import auth

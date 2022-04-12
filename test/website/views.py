@@ -1,8 +1,11 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Book, Note
+from .models import Book, Author, Note
 from . import db
 import json
+#from . import session
+
+
 
 views = Blueprint('views', __name__)
 
@@ -34,7 +37,11 @@ def home():
     if request.method == "POST":
         book = request.form['book']
         # search by author or book
+        #book_author = session.query(Book).join(Author).filter(Book.book_number == Author.book_number, Book.title.contains(book)).all()
         books = Book.query.filter(Book.title.contains(book)).all()
+       # authors = Author.query.filter(Author.book_number=books.book_number).all()
+      #  for b in books:
+        #authors = Author.query.filter(Author.book_number == Book.query.select(Book.title.contains(book)).all()).all()
         #books = Book.query.get(1)
         # User.query
         # cursor.execute("SELECT name, author from Book WHERE name 
@@ -46,7 +53,9 @@ def home():
             #cursor.execute("SELECT name, author from Book")
             #conn.commit()
             #data = cursor.fetchall()
-        print(books[0].title)
+
+        #print(book_author[0].title, book_author[0].first_name)
+        
         return render_template('search.html', user=current_user, data=books)
     return render_template('search.html', user=current_user)
 
