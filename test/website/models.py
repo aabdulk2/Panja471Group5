@@ -29,6 +29,8 @@ class Customer(db.Model, UserMixin):
     address = db.Column(db.String(150))
     phone_number = db.Column(db.String(150))
     date_of_birth = db.Column(db.Date)
+    def get_id(self):
+        return (self.card_id)
     #books = db.relationship('Book', backref='Customer')
 
 class Employee(db.Model, UserMixin):
