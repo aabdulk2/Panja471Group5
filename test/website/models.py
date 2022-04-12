@@ -31,7 +31,7 @@ class Customer(db.Model, UserMixin):
     date_of_birth = db.Column(db.Date)
     def get_id(self):
         return (self.card_id)
-    #books = db.relationship('Book', backref='Customer')
+    books = db.relationship('Book', backref='Customer')
 
 class Employee(db.Model, UserMixin):
     emp_id = db.Column(db.Integer, primary_key=True)
