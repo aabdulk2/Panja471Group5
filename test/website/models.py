@@ -43,6 +43,9 @@ class Employee(db.Model, UserMixin):
     date_of_birth = db.Column(db.DateTime(timezone=True))
     hours_worked = db.Column(db.Integer)
     position = db.Column(db.String(150))
+    phone_number = db.Column(db.String(150))
+    def get_id(self):
+        return (self.emp_id)
     #books = db.relationship('Book')
 
 class Books_checked_out(db.Model):

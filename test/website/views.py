@@ -33,6 +33,7 @@ views = Blueprint('views', __name__)
 
 #endpoint for search
 @views.route('/', methods=['GET', 'POST'])
+@login_required
 def home():
     if request.method == "POST":
         book = request.form['book']
