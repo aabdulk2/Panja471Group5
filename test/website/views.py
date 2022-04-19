@@ -33,12 +33,24 @@ views = Blueprint('views', __name__)
 
 #endpoint for search
 @views.route('/', methods=['GET', 'POST'])
+@login_required
 def home():
     if request.method == "POST":
         book = request.form['book']
+        filter_by = request.form.get('search-by')
+        
+        print("\n\n",filter_by)
+        books = ""
         # search by author or book
         #book_author = session.query(Book).join(Author).filter(Book.book_number == Author.book_number, Book.title.contains(book)).all()
-        books = Book.query.filter(Book.title.contains(book)).all()
+        if filter_by == 'title':
+            books = Book.query.filter(Book.title.contains(book)).all()
+        elif filter_by == 'book_number':
+            books = Book.query.filter(Book.book_number.contains(book)).all()
+        elif filter_by == 'genre':
+            books = Book.query.filter(Book.genre.contains(book)).all()
+        elif filter_by == 'author':
+            books = Book.query.filter(Book.author_name.contains(book)).all()
        # authors = Author.query.filter(Author.book_number=books.book_number).all()
       #  for b in books:
         #authors = Author.query.filter(Author.book_number == Book.query.select(Book.title.contains(book)).all()).all()
@@ -71,3 +83,19 @@ def searchdb():
             db.session.commit()
 
     return jsonify({})
+
+@views.route('/checkout/<int:book_number>', methods=['GET', 'POST'])
+@login_required
+def checkout_book(book_number):
+    # book = Book.query.filter(Book.book_number == book_number)
+    book = Book.query.get(book_number)
+    book.checkout_customerID = current_user.card_id
+    db.session.commit()
+    books = Book.query.filter(Book.checkout_customerID == current_user.card_id).all()
+    return render_template('mybooks.html', books=books)
+
+@views.route('/books', methods=['GET', 'POST'])
+@login_required
+def get_books():
+    books = Book.query.filter(Book.checkout_customerID == current_user.card_id).all()
+    return render_template('mybooks.html', books=books)

@@ -1,34 +1,94 @@
 /* CSS for search file */
 body {
     font-family: Arial;
+    background-image: url("../static/background_2.png");
   }
   * {
     box-sizing: border-box;
   }
-  form.example input[type=text] {
-    padding: 10px;
-    font-size: 17px;
-    border: 1px solid grey;
-    float: left;
-    width: 80%;
-    background: #f1f1f1;
-  }
-  form.example button {
-    float: left;
-    width: 20%;
-    padding: 10px;
-    background: #2196F3;
+  .title{
+    font-family: 'Cinzel Decorative', cursive;
+    font-weight: 600;
     color: white;
-    font-size: 17px;
-    border: 1px solid grey;
-    border-left: none;
-    cursor: pointer;
+    font-size: 74px;
+    margin-left: 15%;
+    padding-top: 100px;
+    color: rgb(83, 158, 83);
   }
-  form.example button:hover {
-    background: #0b7dda;
+  span{
+    color: rgb(82, 39, 82);
   }
-  form.example::after {
-    content: "";
-    clear: both;
-    display: table;
+  label{
+    margin: 0 !important;
+  }
+  .login-form h3{
+    font-size: 56px;
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+  }
+  #form{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    gap: 10px;
+    color: white;
+    font-family: 'Dosis', sans-serif;
+    width: 300px;
+    padding: 20px 30px;
+    border-radius: 10%;
+    background-color: rgba(37, 37, 37,0.8);
+    margin-top: 50px;
+
+  }
+  #bottom-login{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #remember{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  #remember label{
+    margin-bottom: 0;
+  }
+  .overlay{
+    background: rgb(0,0,0);
+    background: linear-gradient(203deg, rgba(0,0,0,0) 14%, rgba(0,0,0,0.8743872549019608) 40%, rgba(0,0,0,1) 76%);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+  .login-button{
+    background-color: none;
+    border: none;
+    height: 50px;
+    width: 50px;
+    background: none;
+    align-self:flex-end;
+    margin-right: 15px;
+  }
+  #login-img{
+    filter: invert();
+    height: 100%;
+    width: 100%;
+  }
+  #email{
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    border: none;
+  }
+  #password{
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    border: none;
   }

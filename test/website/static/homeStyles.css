@@ -1,0 +1,21 @@
+#home-body{
+    background-image: none;
+  }
+.navbar{
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.left-nav{
+    display: flex;
+    flex-direction: row;
+}
+.mid-nav{
+    display: flex;
+    flex-direction: row;
+}
+.right-nav{
+    display: flex;
+    flex-direction: row;
+}

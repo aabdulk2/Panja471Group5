@@ -6,3 +6,9 @@ function deleteNote(noteId) {
     window.location.href = "/";
   });
 }
+// function search() {
+//   fetch("/filter-by", {
+//     method: "POST",
+
+//   })
+// }

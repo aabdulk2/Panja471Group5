@@ -1,18 +1,26 @@
 {% extends "base.html" %} {% block title %}Search{% endblock %} {% block content
     %}
-        <h1><center>Library</center></h1>
-        <form align="center" method="post" action="">
-            <input style="width: 350px;" type="text" placeholder="Search by title" name="book">
-            <button type="submit" class="btn btn-primary")">Search</button>
+        <h1><center>Everlast</center></h1>
+        <form id="search-form" align="center" method="post" action="/">
+            <select name="search-by" id="search-by">
+                <option id="title" value="title" select>Title</option>
+                <option id="book_number" value="book_number">Book Number</option>
+                <option id="genre" value="genre">Genre</option>
+                <option id="author" value="author">Author</option>
+            </select>
+            <input id="search-bar" style="width: 350px;" type="text" placeholder="Search by Title" name="book">
+            <button type="submit" id="search-button" class="btn btn-primary")"><img src="/static/search.svg"/></button>
         </form>
         <center>
         {% for item in data %}
             <ul class="list-group list-group-flush" id="books">
                 <li class="list-group-item">
                 {{item.title}} 
-                <button type="button" class="close" onClick="">
-                    <span aria-hidden="true">Check out</span>
-                  </button>
+                <form action="/checkout/{{ item.book_number }}" method="POST">
+                    <button type="submit" class="close">
+                        Check out
+                    </button>
+                </form>
                 </li>
             </ul>
         {% endfor %}

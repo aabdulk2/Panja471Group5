@@ -12,12 +12,14 @@ class Note(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('customer.card_id'))
 
 class Book(db.Model):
+    # __tablename__ = "Book"
     book_number = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150))
     checkout_date = db.Column(db.DateTime(timezone=True))
     checkin_date = db.Column(db.DateTime(timezone=True))
     checkout_customerID = db.Column(db.Integer, db.ForeignKey('customer.card_id'))
     genre = db.Column(db.String(150))
+    author_name = db.Column(db.String(50), nullable=False)
 
 
 class Customer(db.Model, UserMixin):
@@ -51,7 +53,10 @@ class Books_checked_out(db.Model):
     card_id = db.Column(db.Integer, db.ForeignKey('customer.card_id'))
 
 class Author(db.Model):
+    # __tablename__ = "Author"
     id = db.Column(db.Integer, primary_key=True)
     book_number = db.Column(db.Integer, db.ForeignKey('book.book_number'))
     first_name = db.Column(db.String(150))
     last_name = db.Column(db.String(150))
+    
+    # books = db.relationship("Book", backref="Author")

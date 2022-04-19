@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/index.css">
+    <link rel="stylesheet" href="/static/homeStyles.css">
+    <link rel="stylesheet" href="/static/searchStyles.css">
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -14,31 +17,24 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Dosis:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <title>{% block title %}Home{% endblock %}</title>
   </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbar"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbar">
-        <div class="navbar-nav">
-          {% if user.is_authenticated %}
-          <a class="nav-item nav-link" id="home" href="/">Search</a>
-          
-          <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-          {% else %}
-          <a class="nav-item nav-link" id="login" href="/login">Login</a>
-          <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
-          {% endif %}
+  <body id="home-body">
+    <nav class="navbar">
+        <div class="left-nav">
+            <a class="nav-item nav-link" id="home" href="/home"><img src="/static/home.svg"></img></a>
         </div>
-      </div>
+        <div class="mid-nav">
+          <a class="nav-item nav-link" id="home" href="/"><img src="/static/search.svg"></img></a>
+          <a class="nav-item nav-link" id="home" href="/books"><img src="/static/books.svg"></img></a>
+          <a class="nav-item nav-link" id="home" href="/account"><img src="/static/account.svg"></img></a>
+        </div>
+        <div class="right-nav">
+          <a class="nav-item nav-link" id="logout" href="/logout"><img src="/static/logout.svg"></a>
+        </div>
     </nav>
 
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
@@ -80,5 +76,6 @@
       type="text/javascript"
       src="{{ url_for('static', filename='index.js') }}"
     ></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='search.js') }}"></script>
   </body>
 </html>

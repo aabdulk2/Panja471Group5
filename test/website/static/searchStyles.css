@@ -1,0 +1,20 @@
+#search-bar, #search-by, #search-button{
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 3px; 
+    border-color: rgb(77, 77, 77); 
+}
+#search-bar{
+    border-width: 1px;
+}
+#search-form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+}
+.book-container{
+    width: 100%;
+    
+}
